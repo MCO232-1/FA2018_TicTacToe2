@@ -23,12 +23,17 @@ class TicTacToe {
     }
 
     public void displayBoard() {
-
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 System.out.print(convertToString(grid[row][col]));
             }
             System.out.println();
+        }
+    }
+
+    void setCell(int row, int col, Cell cell) { // package private
+        if (grid[row][col] == Cell.NONE) {
+            grid[row][col] = cell;
         }
     }
 
@@ -42,14 +47,11 @@ class TicTacToe {
         int col = userMove.charAt(0) - 'A';
         int row = userMove.charAt(1) - '1';
 
-        if (grid[row][col] == Cell.NONE) {
-            grid[row][col] = isPlayerOneMove ? Cell.X : Cell.O;
-        }
-
+        setCell(row, col, isPlayerOneMove ? Cell.X : Cell.O);
         //TODO make safe ..add validation A-C, 1-3
     }
 
-    boolean gameOver() { 
+    public boolean isGameOver() {
         // diag #1
         if (grid[0][0] != Cell.NONE
                 && grid[0][0] == grid[1][1]
@@ -61,17 +63,21 @@ class TicTacToe {
         return false;
     }
 
-    Cell getWinner() {        
-        if (gameOver())
-            return  isPlayerOneMove ? Cell.X : Cell.O;
+    public Cell getWinner() {
+        if (isGameOver()) {
+            return isPlayerOneMove ? Cell.X : Cell.O;
+        }
         return Cell.NONE;
-     }
+    }
 
     private String convertToString(Cell cell) {
-        switch(cell){
-            case NONE: return " ";
-            case O: return "O";
-            case X: return "X";
+        switch (cell) {
+            case NONE:
+                return " ";
+            case O:
+                return "O";
+            case X:
+                return "X";
             default:
                 throw new RuntimeException(cell.toString());
         }
