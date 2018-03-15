@@ -27,6 +27,7 @@ public class TicTacToeTest {
         // Arrange
         
         TicTacToe t3 = new TicTacToe(2);
+       
         
         t3.setCell(0, 2, Cell.X);
         t3.setCell(1, 1, Cell.X);
@@ -43,5 +44,22 @@ public class TicTacToeTest {
     public void getWinner() {
 
     }
-
+ 
+    @Test
+    public void isGameOverRows() {}
+ 
+    @Test
+    public void isGameOverColumns() {}
+    
+ 
+    @Test
+    public void isGameOverDraw() {} // game over since there are no more spaces
+    
+    @Test
+    public void isValidMoveInRangeReturnsTrue() {} //
+    @Test
+    public void isValidMoveOutRangeReturnsFalse() {} 
+    
+    @Test
+    public void isValidMoveCellOccupiedReturnsFalse() {} //
 }
