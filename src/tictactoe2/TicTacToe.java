@@ -1,5 +1,6 @@
 package tictactoe2;
 
+import java.awt.Point;
 import java.util.Scanner;
 
 enum Cell {
@@ -37,34 +38,34 @@ class TicTacToe {
         }
     }
 
-    Point prompt(){
+    Point prompt() {
         Scanner kb = new Scanner(System.in);
+        int col, row;
         do {
-        System.out.println("Enter your Move (A1 - C3, Mr." + (isPlayerOneMove ? "X" : "O"));
+            System.out.println("Enter your Move (A1 - C3, Mr." + (isPlayerOneMove ? "X" : "O"));
 //TODO Validation
-        String userMove = kb.next();
-        int col = userMove.charAt(0) - 'A';
-        int row = userMove.charAt(1) - '1';
-        }
-        while (! isValidMove(col,row));
-        return new Point(col, row);               
+            String userMove = kb.next();
+            col = userMove.charAt(0) - 'A';
+            row = userMove.charAt(1) - '1';
+        } while (!isValidMove(col, row));
+        return new Point(col, row);
     }
-    
-    /**Checks that move in on board (0-3) and cell is available
-    boolean isValidMove(int col, int row)
-    {
+
+    /**
+     * Checks that move in on board (0-3) and cell is available
+     */
+    boolean isValidMove(int col, int row) {
         return false;
         //TODO
     }
-    
-    void togglePlayer(){        
+
+    void togglePlayer() {
         isPlayerOneMove = !isPlayerOneMove;
     }
-    
+
     public void promptAndMakeMove() {
         Point move = prompt();
         setCell(move.y, move.x, isPlayerOneMove ? Cell.X : Cell.O);
-        //TODO make safe ..add validation A-C, 1-3
     }
 
     public boolean isGameOver() {
