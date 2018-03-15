@@ -13,6 +13,7 @@ public class TicTacToe2 {
         TicTacToe game = new TicTacToe(2);
         do {
             game.displayBoard();
+            game.togglePlayer();
             game.promptAndMakeMove();
         } while (! game.isGameOver());
         System.out.println(game.getWinner());
