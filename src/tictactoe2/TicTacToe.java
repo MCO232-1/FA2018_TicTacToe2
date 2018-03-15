@@ -37,17 +37,33 @@ class TicTacToe {
         }
     }
 
-    public void promptAndMakeMove() {
-        isPlayerOneMove = !isPlayerOneMove; // toggle
-
+    Point prompt(){
         Scanner kb = new Scanner(System.in);
+        do {
         System.out.println("Enter your Move (A1 - C3, Mr." + (isPlayerOneMove ? "X" : "O"));
-
+//TODO Validation
         String userMove = kb.next();
         int col = userMove.charAt(0) - 'A';
         int row = userMove.charAt(1) - '1';
-
-        setCell(row, col, isPlayerOneMove ? Cell.X : Cell.O);
+        }
+        while (! isValidMove(col,row));
+        return new Point(col, row);               
+    }
+    
+    /**Checks that move in on board (0-3) and cell is available
+    boolean isValidMove(int col, int row)
+    {
+        return false;
+        //TODO
+    }
+    
+    void togglePlayer(){        
+        isPlayerOneMove = !isPlayerOneMove;
+    }
+    
+    public void promptAndMakeMove() {
+        Point move = prompt();
+        setCell(move.y, move.x, isPlayerOneMove ? Cell.X : Cell.O);
         //TODO make safe ..add validation A-C, 1-3
     }
 
